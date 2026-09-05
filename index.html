@@ -2,50 +2,76 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#14101c" />
   <title>Бип дома</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <div id="app">
     <header class="top">
-      <div class="brand">БИП ДОМА</div>
+      <div class="brand">
+        <b>БИП ДОМА</b>
+        <small id="roomName">Прихожая</small>
+      </div>
       <div class="hud">
-        <span id="levelLabel">Ур. 1</span>
-        <span id="scoreLabel">0</span>
-        <span id="livesLabel">❤ 3</span>
+        <div class="pill">Ур. <span id="levelLabel">1</span>/10</div>
+        <div class="pill gold" id="scoreLabel">0</div>
+        <div class="pill lives" id="livesLabel">❤❤❤</div>
       </div>
     </header>
 
-    <main id="arena" class="arena">
-      <div id="roomName" class="room-name">Прихожая</div>
-      <div id="bip" class="bip">🤖</div>
-      <div id="hint" class="hint">Жми по врагам!</div>
+    <main id="arena" class="arena room-0">
+      <div class="floor"></div>
+      <div id="bip" class="bip" aria-hidden="true">
+        <div class="antenna"></div>
+        <div class="head">
+          <div class="eye"></div>
+          <div class="eye"></div>
+        </div>
+        <div class="body">БИП</div>
+      </div>
+      <div id="fx" class="fx"></div>
+      <div id="toast" class="toast"></div>
+      <div id="countdown" class="countdown"></div>
     </main>
 
     <footer class="bar">
-      <div id="progress" class="progress"><i id="progressFill"></i></div>
-      <button id="pauseBtn" class="ghost">Пауза</button>
+      <div class="progress-wrap">
+        <div class="progress"><i id="progressFill"></i></div>
+        <span id="needLabel">0 / 8</span>
+      </div>
+      <button id="pauseBtn" class="icon-btn" type="button">❚❚</button>
     </footer>
   </div>
 
   <section id="screen" class="screen show">
     <div class="card">
+      <div class="logo-bip">
+        <div class="antenna"></div>
+        <div class="head"><div class="eye"></div><div class="eye"></div></div>
+      </div>
       <h1>БИП ДОМА</h1>
-      <p>Бип против квартиры. 10 комнат. После каждой — шортс из группы.</p>
-      <button id="startBtn" class="primary">Начать бой</button>
-      <button id="groupBtn" class="ghost">Группа Бипа</button>
+      <p class="lead">Квартира взбесилась. Жми по летящим вещам, пока они не врезались в Бипа.</p>
+      <ul class="how">
+        <li>Предмет летит на Бипа</li>
+        <li>Ты по нему тапаешь</li>
+        <li>Не успел — минус жизнь</li>
+        <li>После комнаты — выпуск из группы</li>
+      </ul>
+      <button id="startBtn" class="primary" type="button">Начать защиту дома</button>
+      <button id="groupBtn" class="ghost" type="button">Группа Бипа</button>
       <p class="mini">Рекорд: <b id="bestScore">0</b></p>
     </div>
   </section>
 
   <section id="clipScreen" class="screen">
     <div class="card wide">
-      <h2 id="clipTitle">Бонус уровня</h2>
-      <p id="clipSub">Свежий выпуск Бипа</p>
+      <h2 id="clipTitle">Комната зачищена</h2>
+      <p id="clipSub">Бонус — выпуск Бипа</p>
       <div id="playerBox" class="player"></div>
-      <button id="nextBtn" class="primary" disabled>Дальше</button>
-      <button id="skipHint" class="ghost hidden">Кнопка откроется после ролика</button>
+      <p class="mini" id="clipWait">Кнопка откроется через 5 сек</p>
+      <button id="nextBtn" class="primary" type="button" disabled>Дальше</button>
     </div>
   </section>
 
@@ -53,9 +79,9 @@
     <div class="card">
       <h2 id="overTitle">Бой окончен</h2>
       <p id="overText"></p>
-      <button id="retryBtn" class="primary">Ещё раз</button>
-      <button id="shareBtn" class="ghost">Поделиться</button>
-      <button id="rewardBtn" class="ghost">Доп. жизнь за рекламу</button>
+      <button id="retryBtn" class="primary" type="button">Ещё раз</button>
+      <button id="shareBtn" class="ghost" type="button">Поделиться</button>
+      <button id="rewardBtn" class="ghost" type="button">Доп. жизнь за рекламу</button>
     </div>
   </section>
 
