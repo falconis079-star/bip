@@ -1,0 +1,38 @@
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body { margin: 0; height: 100%; font-family: Arial, sans-serif; background: #120d1a; color: #fff; overflow: hidden; user-select: none; }
+#app { height: 100%; display: flex; flex-direction: column; }
+.top, .bar { padding: 10px 12px; background: #1c1428; display: flex; justify-content: space-between; align-items: center; }
+.brand { font-weight: 900; letter-spacing: 1px; color: #ffe36b; }
+.hud span { margin-left: 10px; font-weight: 700; }
+.arena { flex: 1; position: relative; background: radial-gradient(circle at top, #3a2a18, #1a1010 70%); overflow: hidden; }
+.room-name { position: absolute; top: 12px; left: 0; right: 0; text-align: center; opacity: .8; font-weight: 700; }
+.bip { position: absolute; left: 50%; bottom: 18%; transform: translateX(-50%); font-size: 54px; z-index: 2; }
+.hint { position: absolute; bottom: 8%; width: 100%; text-align: center; opacity: .7; }
+.enemy {
+  position: absolute; width: 74px; height: 74px; border-radius: 18px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 34px; background: #2b1b12; border: 2px solid #ffd36a;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+}
+.enemy.hit { transform: scale(.8); opacity: .4; }
+.progress { flex: 1; height: 10px; background: #2a2033; border-radius: 20px; overflow: hidden; margin-right: 10px; }
+.progress i { display: block; height: 100%; width: 0; background: #ffe36b; }
+.screen {
+  position: fixed; inset: 0; background: rgba(8,6,12,.88);
+  display: none; align-items: center; justify-content: center; padding: 18px; z-index: 20;
+}
+.screen.show { display: flex; }
+.card { width: min(420px, 100%); background: #23182e; border: 1px solid #3d2b4e; border-radius: 22px; padding: 22px; text-align: center; }
+.card.wide { width: min(520px, 100%); }
+h1, h2 { margin: 0 0 10px; }
+.primary, .ghost {
+  width: 100%; margin-top: 10px; border: 0; border-radius: 14px;
+  padding: 14px; font-size: 16px; font-weight: 800; cursor: pointer;
+}
+.primary { background: #ffe36b; color: #22180a; }
+.ghost { background: transparent; color: #fff; border: 1px solid #554066; }
+.mini { opacity: .7; }
+.player { width: 100%; aspect-ratio: 9/16; max-height: 48vh; background: #000; border-radius: 14px; overflow: hidden; margin: 10px 0; }
+.player iframe { width: 100%; height: 100%; border: 0; }
+.hidden { display: none; }
+button:disabled { opacity: .45; }
