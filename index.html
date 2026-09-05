@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0a12" />
+  <title>Бип дома</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div id="hud" class="hud hidden">
+    <div class="left">
+      <div class="title">БИП ДОМА</div>
+      <div id="roomHud">Прихожая</div>
+    </div>
+    <div class="right">
+      <span id="waveHud">1/10</span>
+      <span id="scoreHud">0</span>
+      <span id="hpHud">❤❤❤</span>
+    </div>
+  </div>
+  <div id="menu" class="overlay">
+    <div class="panel">
+      <h1>БИП ДОМА</h1>
+      <p>Вещи летят в Бипа. Тапай по ним, пока не врезались. Чем длиннее серия ударов — тем больше очков.</p>
+      <div class="tips">
+        <div>🟡 1 удар</div>
+        <div>🔴 2 удара</div>
+        <div>💎 бонус и щит</div>
+      </div>
+      <button id="playBtn" class="go">Играть</button>
+      <button id="groupBtn" class="soft">Группа Бипа</button>
+      <div class="rec">Рекорд <b id="best">0</b></div>
+    </div>
+  </div>
+  <div id="pause" class="overlay hidden">
+    <div class="panel slim">
+      <h2>Пауза</h2>
+      <button id="resumeBtn" class="go">Продолжить</button>
+      <button id="menuBtn" class="soft">В меню</button>
+    </div>
+  </div>
+  <div id="end" class="overlay hidden">
+    <div class="panel">
+      <h2 id="endTitle">Бой окончен</h2>
+      <p id="endText"></p>
+      <button id="againBtn" class="go">Ещё раз</button>
+      <button id="shareBtn" class="soft">В группу Бипа</button>
+    </div>
+  </div>
+  <button id="pauseBtn" class="pause hidden" type="button">❚❚</button>
+  <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+  <script src="config.js"></script>
+  <script src="vk.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
