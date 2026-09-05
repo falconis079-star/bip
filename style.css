@@ -1,0 +1,162 @@
+:root {
+  --bg: #120e18;
+  --card: #22182c;
+  --line: #4a3560;
+  --gold: #ffd95a;
+  --pink: #ff6b8a;
+  --safe: #6cffb2;
+}
+* { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+html, body {
+  margin: 0; height: 100%;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: var(--bg); color: #fff;
+  overflow: hidden; user-select: none;
+}
+#app { height: 100%; display: flex; flex-direction: column; }
+.top, .bar {
+  padding: 10px 12px calc(10px + env(safe-area-inset-bottom));
+  background: #1a1324;
+  display: flex; justify-content: space-between; align-items: center;
+  z-index: 5;
+}
+.brand b { display: block; color: var(--gold); letter-spacing: 1px; }
+.brand small { opacity: .75; }
+.hud { display: flex; gap: 6px; }
+.pill {
+  background: #2c213b; border: 1px solid #4a3560;
+  border-radius: 999px; padding: 6px 10px; font-weight: 800; font-size: 13px;
+}
+.pill.gold { color: var(--gold); }
+.pill.lives { color: var(--pink); letter-spacing: 2px; }
+
+.arena {
+  flex: 1; position: relative; overflow: hidden;
+  background:
+    radial-gradient(circle at 50% 18%, rgba(255,217,90,.12), transparent 36%),
+    linear-gradient(#2a1d16, #141018 70%);
+}
+.arena.room-1 { background: linear-gradient(#1d2430, #10141c 70%); }
+.arena.room-2 { background: linear-gradient(#1a2830, #10161c 70%); }
+.arena.room-3 { background: linear-gradient(#2a2214, #16110c 70%); }
+.arena.room-4 { background: linear-gradient(#142430, #0c141c 70%); }
+.arena.room-5 { background: linear-gradient(#1a1630, #0e0c18 70%); }
+.arena.room-6 { background: linear-gradient(#241814, #140e0c 70%); }
+.arena.room-7 { background: linear-gradient(#2a1c14, #14100c 70%); }
+.arena.room-8 { background: linear-gradient(#241820, #120e14 70%); }
+.arena.room-9 { background: linear-gradient(#301820, #140c10 70%); }
+.floor {
+  position: absolute; left: 0; right: 0; bottom: 0; height: 22%;
+  background: linear-gradient(transparent, rgba(0,0,0,.35));
+}
+
+.bip {
+  position: absolute; left: 50%; bottom: 11%;
+  transform: translateX(-50%);
+  width: 86px; z-index: 3;
+  animation: idle 1.6s ease-in-out infinite;
+}
+.bip .antenna {
+  width: 8px; height: 16px; margin: 0 auto 2px;
+  background: #9ad7ff; border-radius: 8px;
+  box-shadow: 0 -6px 0 #6cffb2;
+}
+.bip .head, .logo-bip .head {
+  width: 70px; height: 52px; margin: 0 auto;
+  background: #eef6ff; border-radius: 18px 18px 12px 12px;
+  display: flex; justify-content: center; gap: 10px; align-items: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,.35);
+}
+.bip .eye, .logo-bip .eye {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: #19c8ff; box-shadow: 0 0 10px #19c8ff;
+}
+.bip .body {
+  margin: 4px auto 0; width: 62px; height: 36px;
+  background: #7ecbff; border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  color: #08314a; font-weight: 900; font-size: 12px;
+}
+.bip.hurt { animation: hurt .35s ease; }
+.bip.win { animation: bounce .5s ease; }
+
+@keyframes idle { 50% { transform: translateX(-50%) translateY(-5px); } }
+@keyframes hurt { 25% { transform: translateX(-58%) rotate(-8deg); } 75% { transform: translateX(-42%) rotate(8deg); } }
+@keyframes bounce { 50% { transform: translateX(-50%) scale(1.12) translateY(-10px); } }
+
+.enemy {
+  position: absolute; width: 78px; height: 78px; border: 0;
+  border-radius: 22px; z-index: 4;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 38px;
+  background: rgba(20,14,24,.92);
+  box-shadow: 0 10px 24px rgba(0,0,0,.4), inset 0 0 0 2px var(--gold);
+  animation: pop .18s ease-out;
+}
+.enemy.warn { box-shadow: 0 10px 24px rgba(0,0,0,.4), inset 0 0 0 3px var(--pink); }
+.enemy.hit {
+  pointer-events: none;
+  animation: smash .22s ease-out forwards;
+}
+@keyframes pop { from { transform: scale(.4); opacity: 0; } }
+@keyframes smash { to { transform: scale(1.35); opacity: 0; } }
+
+.float {
+  position: absolute; z-index: 6; font-weight: 900; color: var(--gold);
+  pointer-events: none; animation: floatUp .7s ease-out forwards;
+}
+@keyframes floatUp { to { transform: translateY(-40px); opacity: 0; } }
+
+.toast, .countdown {
+  position: absolute; left: 50%; top: 18%;
+  transform: translateX(-50%);
+  font-weight: 900; text-align: center; z-index: 7;
+  text-shadow: 0 4px 16px #000;
+}
+.countdown { font-size: 72px; color: var(--gold); }
+.toast {
+  top: 12%; padding: 8px 14px; border-radius: 999px;
+  background: rgba(0,0,0,.45); font-size: 15px;
+}
+
+.bar .progress-wrap { flex: 1; margin-right: 10px; }
+.progress { height: 12px; background: #2a2033; border-radius: 20px; overflow: hidden; }
+.progress i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffe36b, #6cffb2); transition: width .2s; }
+#needLabel { display: block; margin-top: 4px; font-size: 12px; opacity: .8; }
+.icon-btn {
+  width: 44px; height: 44px; border-radius: 14px; border: 1px solid var(--line);
+  background: #2c213b; color: #fff; font-size: 14px;
+}
+
+.screen {
+  position: fixed; inset: 0; background: rgba(8,6,12,.9);
+  display: none; align-items: center; justify-content: center;
+  padding: 18px; z-index: 20;
+}
+.screen.show { display: flex; }
+.card {
+  width: min(430px, 100%);
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 24px; padding: 22px; text-align: center;
+}
+.card.wide { width: min(520px, 100%); }
+.logo-bip { margin: 0 auto 10px; width: 70px; }
+.logo-bip .antenna { width: 8px; height: 14px; margin: 0 auto 2px; background: #9ad7ff; border-radius: 8px; }
+h1, h2 { margin: 0 0 8px; }
+.lead { opacity: .88; margin: 0 0 12px; }
+.how { text-align: left; margin: 0 0 16px; padding-left: 18px; opacity: .9; line-height: 1.5; }
+.primary, .ghost {
+  width: 100%; margin-top: 8px; border: 0; border-radius: 14px;
+  padding: 14px; font-size: 16px; font-weight: 800;
+}
+.primary { background: var(--gold); color: #22180a; }
+.ghost { background: transparent; color: #fff; border: 1px solid var(--line); }
+.mini { opacity: .7; }
+.player {
+  width: 100%; aspect-ratio: 9/16; max-height: 42vh;
+  background: #000; border-radius: 14px; overflow: hidden; margin: 10px 0;
+  display: flex; align-items: center; justify-content: center;
+}
+.player iframe { width: 100%; height: 100%; border: 0; }
+button:disabled { opacity: .45; }
