@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
+  <meta name="theme-color" content="#0b0a12" />
+  <title>Бип дома</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <canvas id="game"></canvas>
+  <div id="hud" class="hud hidden">
+    <div class="left">
+      <div class="title">БИП ДОМА</div>
+      <div id="roomHud">Прихожая</div>
+    </div>
+    <div class="right">
+      <span id="waveHud">1/10</span>
+      <span id="scoreHud">0 BC</span>
+      <span id="hpHud">❤❤❤</span>
+    </div>
+  </div>
+
+  <div id="menu" class="overlay">
+    <div class="panel">
+      <h1>БИП ДОМА</h1>
+      <p class="wallet">Баланс: <b id="coinHud">0</b> BipCoin</p>
+      <p id="dailyLine">Зайди завтра за ежедневным бонусом</p>
+      <p id="saveLine">Новая кампания</p>
+      <div class="tips">
+        <div>Вход в комнату стоит BipCoin</div>
+        <div>Монеты: бой, ежедневка, выпуск</div>
+        <div>Голоса ВК — позже</div>
+      </div>
+      <button id="playBtn" class="go">Начать комнату</button>
+      <button id="farmBtn" class="go">Тапалка Бипа</button>
+      <button id="walletBtn" class="soft">Кошелёк</button>
+      <button id="clipMenuBtn" class="soft">+20 BC за выпуск</button>
+      <button id="buyBtn" class="soft">Купить BC за голоса</button>
+      <button id="groupBtn" class="soft">Группа Бипа</button>
+      <button id="resetBtn" class="soft dim">Сбросить прогресс</button>
+    </div>
+  </div>
+
+  <div id="roomOver" class="overlay hidden">
+    <div class="panel">
+      <h2 id="roomOverTitle">Комната чиста</h2>
+      <p id="roomOverText"></p>
+      <div id="playerBox" class="player hidden"></div>
+      <button id="clipBtn" class="soft">Смотреть выпуск +20 BC</button>
+      <button id="nextRoomBtn" class="go">Дальше</button>
+      <button id="homeBtn" class="soft">В меню</button>
+    </div>
+  </div>
+
+  <div id="farm" class="overlay hidden">
+    <div class="panel farm-panel">
+      <div class="ex-top">FARM</div>
+      <h2>Тапалка Бипа</h2>
+      <p id="farmBal">0 BC</p>
+      <button id="farmTap" class="farm-hit" type="button">БИП</button>
+      <p class="mini">+0.0001 BC за тап, без лимита. Нужны монеты на комнату — сиди здесь.</p>
+      <button id="farmBack" class="soft">Назад</button>
+    </div>
+  </div>
+
+  <div id="wallet" class="overlay hidden">
+    <div class="panel wallet-panel">
+      <div class="ex-top">SPOT WALLET</div>
+      <div class="ex-main" id="exMain">0.00 BC</div>
+      <div class="ex-sub" id="exUsd">≈ $0.00</div>
+      <div class="sec">Активы</div>
+      <div class="ex-grid" id="exGrid"></div>
+      <div class="sec">Обмен · комиссия 1%</div>
+      <div class="row">
+        <select id="swapFrom"></select>
+        <select id="swapTo"></select>
+      </div>
+      <input id="swapAmt" type="number" min="0" step="0.01" placeholder="Сумма списания" />
+      <p class="mini" id="swapHint">BC → USD → RUB → EUR → JPY в любую сторону</p>
+      <button id="swapBtn" class="go">Обменять</button>
+      <div class="sec">Earn · 38.5% годовых</div>
+      <p class="mini" id="stakeHint">Только BipCoin, начисление раз в сутки</p>
+      <input id="stakeAmt" type="number" min="10" step="1" placeholder="Сумма от 10 BC" />
+      <div class="row">
+        <button id="stakeBtn" class="soft">В депозит</button>
+        <button id="unstakeBtn" class="soft">Вывести</button>
+      </div>
+      <div class="sec">Фиат</div>
+      <div class="row">
+        <button id="topupBtn" class="soft dim">Deposit</button>
+        <button id="withdrawBtn" class="soft dim">Withdraw</button>
+      </div>
+      <p class="mini">Игровой токен. Внешний ввод/вывод позже.</p>
+      <button id="walletBack" class="soft">Назад</button>
+    </div>
+  </div>
+
+  <div id="pause" class="overlay hidden">
+    <div class="panel slim">
+      <h2>Пауза</h2>
+      <button id="resumeBtn" class="go">Продолжить</button>
+      <button id="menuBtn" class="soft">В меню</button>
+    </div>
+  </div>
+
+  <div id="end" class="overlay hidden">
+    <div class="panel">
+      <h2 id="endTitle">Бой окончен</h2>
+      <p id="endText"></p>
+      <button id="againBtn" class="go">В меню</button>
+      <button id="shareBtn" class="soft">В группу Бипа</button>
+    </div>
+  </div>
+
+  <button id="pauseBtn" class="pause hidden" type="button">❚❚</button>
+  <script src="https://unpkg.com/@vkontakte/vk-bridge/dist/browser.min.js"></script>
+  <script src="config.js"></script>
+  <script src="vk.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
